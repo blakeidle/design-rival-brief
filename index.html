@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design Rival Brief — Weekly design-SaaS competitive intelligence</title>
+<meta name="description" content="Monday briefs on Canva, Figma, Adobe Express and peers. Pricing moves, AI packaging, brand-kit ceilings — sourced." />
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --ink: #10131f;
+    --muted: #5b6178;
+    --line: #e4e7f1;
+    --card: #ffffff;
+    --accent: #5b21ff;
+    --accent-deep: #3b12c4;
+    --ok: #0f9f6e;
+    --glass: rgba(14, 16, 28, 0.78);
+    --radius: 18px;
+    --font: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+
+  /* Dark glassy top nav */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    background: var(--glass);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    color: #f3f4fb;
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto; padding: 12px 22px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; color: #fff; text-decoration: none; }
+  .brand-mark {
+    width: 28px; height: 28px; border-radius: 9px;
+    background: linear-gradient(135deg, #7c5cff, #3b82f6);
+    box-shadow: 0 8px 20px rgba(91,33,255,.35);
+  }
+  .nav-links { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .nav-links a { color: rgba(255,255,255,.78); font-size: 14px; text-decoration: none; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    background: #fff; color: #111; border: none; border-radius: 999px;
+    padding: 8px 14px; font-weight: 650; font-size: 13px; cursor: pointer;
+  }
+  .nav-cta:hover { background: #ecebff; }
+
+  .hero { padding: 56px 0 28px; }
+  .eyebrow {
+    display: inline-flex; gap: 8px; align-items: center;
+    background: #ece8ff; color: var(--accent-deep);
+    font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  h1 { margin: 0 0 12px; font-size: clamp(32px, 5vw, 48px); letter-spacing: -0.04em; line-height: 1.08; max-width: 16ch; }
+  .lede { margin: 0; color: var(--muted); font-size: 18px; line-height: 1.55; max-width: 54ch; }
+  .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 999px; padding: 12px 18px; font-weight: 650; font-size: 14px;
+    border: 1px solid transparent; cursor: pointer; text-decoration: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 12px 28px rgba(91,33,255,.28); }
+  .btn-primary:hover { background: var(--accent-deep); text-decoration: none; }
+  .btn-ghost { background: #fff; border-color: var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: #c9cce0; text-decoration: none; }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0 8px; }
+  @media (max-width: 820px) { .grid-3 { grid-template-columns: 1fr; } }
+  .stat {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;
+  }
+  .stat b { display: block; font-size: 22px; letter-spacing: -0.03em; }
+  .stat span { color: var(--muted); font-size: 13px; }
+
+  .section { padding: 28px 0 10px; }
+  .section h2 { margin: 0 0 8px; font-size: 24px; letter-spacing: -0.03em; }
+  .section p.sub { margin: 0 0 18px; color: var(--muted); max-width: 60ch; }
+
+  .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .pricing { grid-template-columns: 1fr; } }
+  .price-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .price-card.featured { border-color: #c7b8ff; box-shadow: 0 18px 40px rgba(91,33,255,.10); }
+  .price-card h3 { margin: 0; font-size: 18px; }
+  .price { font-size: 40px; letter-spacing: -0.04em; font-weight: 750; }
+  .price small { font-size: 15px; color: var(--muted); font-weight: 500; }
+  .price-card ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.55; }
+  .price-card .btn { width: 100%; margin-top: auto; }
+
+  .issue {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px;
+    box-shadow: 0 18px 50px rgba(15,18,34,.05);
+  }
+  .issue .meta { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+  .issue h2 { margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em; }
+  .issue h3 { margin: 22px 0 8px; font-size: 18px; letter-spacing: -0.02em; }
+  .issue p, .issue li { color: #2a2f42; line-height: 1.6; }
+  .issue table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 12px 0 8px; }
+  .issue th, .issue td { border-bottom: 1px solid var(--line); text-align: left; padding: 10px 8px; vertical-align: top; }
+  .issue th { color: var(--muted); font-weight: 650; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .callout {
+    background: #f3f0ff; border: 1px solid #ddd4ff; border-radius: 14px; padding: 14px 16px; margin: 14px 0;
+    color: #2a2158; font-size: 14px; line-height: 1.5;
+  }
+  .sources { font-size: 13px; color: var(--muted); }
+  .sources a { word-break: break-all; }
+
+  footer {
+    margin: 48px 0 28px; color: var(--muted); font-size: 13px;
+    border-top: 1px solid var(--line); padding-top: 18px;
+  }
+  code { font-family: var(--mono); font-size: 12px; background: #eef0f7; padding: 2px 6px; border-radius: 6px; }
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Design Rival Brief</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#issue">Issue #1</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how">How it works</a>
+        <button class="nav-cta" type="button" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Subscribe</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <div class="eyebrow">Play #1 · Passive income MVP · Nov 5, 2026</div>
+      <h1>Know what Canva, Figma, and Adobe Express changed — before your clients do.</h1>
+      <p class="lede">A Monday (and Thursday snapshot) competitive brief for design founders, agency leads, and product marketers. Sourced pricing + AI packaging diffs — not engagement bait.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#pricing">Start at $49/mo</a>
+        <a class="btn btn-ghost" href="#issue">Read Issue #1 sample</a>
+      </div>
+      <div class="grid-3" aria-label="Highlights">
+        <div class="stat"><b>3 → 10</b><span>Rivals watched (Starter → Pro)</span></div>
+        <div class="stat"><b>Mon / Thu</b><span>Automated public-page snapshots</span></div>
+        <div class="stat"><b>Sourced</b><span>Every price links to a primary page</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <h2>Simple pricing</h2>
+      <p class="sub">Stripe Payment Links are placeholders until Blake confirms live products on Axon Stewardship, LLC. Swap the constants below in 10 seconds.</p>
+      <div class="pricing">
+        <article class="price-card">
+          <h3>Starter</h3>
+          <div class="price">$49<small>/mo</small></div>
+          <ul>
+            <li>Watch 3 design-SaaS rivals</li>
+            <li>Monday brief + Thursday change pulses</li>
+            <li>Pricing / AI / brand-kit ceilings</li>
+            <li>Email delivery</li>
+          </ul>
+          <a class="btn btn-ghost" id="cta-starter" href="#STRIPE_STARTER_LINK">Subscribe Starter</a>
+        </article>
+        <article class="price-card featured">
+          <h3>Pro</h3>
+          <div class="price">$99<small>/mo</small></div>
+          <ul>
+            <li>Watch 10 rivals</li>
+            <li>Same-day alerts on material pricing/AI page changes</li>
+            <li>Counter-positioning moves each week</li>
+            <li>Priority topic requests</li>
+          </ul>
+          <a class="btn btn-primary" id="cta-pro" href="#STRIPE_PRO_LINK">Subscribe Pro</a>
+        </article>
+      </div>
+      <p class="sub" style="margin-top:14px">Config placeholders: <code>STRIPE_STARTER_LINK</code> · <code>STRIPE_PRO_LINK</code></p>
+    </section>
+
+    <section class="section" id="how">
+      <h2>How the bot loop runs</h2>
+      <p class="sub">Competitor Watch + Stalk Bot + Researchy draft; Mogul packages; Blake approves the first weeks. Snapshot CLI lives in <code>scripts/snapshot_diff.py</code>.</p>
+    </section>
+
+    <section class="section" id="issue">
+      <article class="issue">
+        <div class="meta">Issue #1 · Sample edition · November 5, 2026 · America/New_York</div>
+        <h2>The Design AI Bundling Shift: Canva vs. Figma vs. Adobe Express</h2>
+        <p><strong>The point:</strong> All three platforms now sell AI as a <em>metered entitlement on seats</em>, not a free side feature. Canva upsells <strong>AI Pass</strong> on Pro/Business. Figma attaches hard monthly <strong>AI credits</strong> to Full/Dev/Collab seats. Adobe Express keeps a low Premium sticker and steers heavy generation into <strong>Firefly Pro</strong>.</p>
+
+        <h3>Scoreboard (US list prices)</h3>
+        <table>
+          <thead>
+            <tr><th>Rival</th><th>Entry paid</th><th>Mid / team</th><th>AI model</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Canva</strong></td>
+              <td>Pro <strong>US$144/yr</strong></td>
+              <td>Business <strong>US$250/yr</strong> per person (Recommended); Enterprise “Let’s talk”</td>
+              <td>Plan AI access + <strong>AI Pass</strong> monthly add-on</td>
+            </tr>
+            <tr>
+              <td><strong>Figma</strong></td>
+              <td>Professional Full <strong>$16/mo</strong> (+ 3,000 AI credits)</td>
+              <td>Org Full <strong>$55/mo</strong> (+ 3,500); Ent Full <strong>$90/mo</strong> (+ 4,250)</td>
+              <td>Seat credits; purchasable top-ups</td>
+            </tr>
+            <tr>
+              <td><strong>Adobe Express</strong></td>
+              <td>Premium ~<strong>$9.99/mo</strong> (often with 250 Firefly credits)</td>
+              <td>Teams/Enterprise business plans; Firefly Pro ~$19.99/mo (~4,000 credits)</td>
+              <td>Low sticker + Firefly credit ladder</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout">Canva Pro/Business list prices match the Oct 4, 2026 Competitor Watch baseline screenshots. The motion in this window is AI upsell (AI Pass banner on pricing), not a headline Pro/Business price change.</div>
+
+        <h3>Three packaging philosophies</h3>
+        <p><strong>Canva</strong> sells an annual design seat (5 Brand Kits on Pro → 100 on Business → 1000 on Enterprise) and meters Premium/Ultra AI; AI Pass markets up to ~40× Pro / ~20× Business allowance.</p>
+        <p><strong>Figma</strong> makes seats the product. Full seats carry 3,000–4,250 monthly AI credits; Dev/Collab get 500. Credits reset monthly, do not roll over, and are not transferable. Agentic Make / agent tools consume credits (GA noted Oct 6, 2026).</p>
+        <p><strong>Adobe Express</strong> stays cheap as a template/brand layer; Express Premium is also included in many Creative Cloud plans (Adobe Help, Jul 13, 2026). Heavy Firefly volume lives on a separate Firefly ladder.</p>
+
+        <h3>Counter-moves</h3>
+        <ol>
+          <li>Build an AI unit-economics sheet: seat + expected Pass/credits for your real weekly workflow.</li>
+          <li>Watch Brand Kit ceilings — Canva Pro’s 5 kits remain an agency upgrade trigger.</li>
+          <li>Expect AI Pass / credit packs to become silent ARR while list prices look flat.</li>
+        </ol>
+
+        <h3>Sources</h3>
+        <p class="sources">
+          <a href="https://www.canva.com/pricing/">canva.com/pricing</a> ·
+          <a href="https://www.canva.com/ai-pass/">canva.com/ai-pass</a> ·
+          <a href="https://www.figma.com/pricing/">figma.com/pricing</a> ·
+          <a href="https://help.figma.com/hc/en-us/articles/33459875669015-How-Figma-AI-credits-work">Figma AI credits help</a> ·
+          <a href="https://www.adobe.com/express/pricing">adobe.com/express/pricing</a> ·
+          <a href="https://helpx.adobe.com/express/web/adobe-express-subscription/premium.html">Adobe Express Premium help</a> ·
+          Internal baseline <code>/workspace/competitor-watch/canva/2026-10-04/</code>
+        </p>
+        <p class="sources">Full markdown edition: <code>issues/issue-001.md</code></p>
+      </article>
+    </section>
+
+    <footer>
+      Design Rival Brief · Built for Blake Idle / Axon Stewardship, LLC · Stripe placeholders only — no live charges from this page.
+    </footer>
+  </main>
+
+  <script>
+    // Swap these two strings for live Stripe Payment Links (10-second wire-up).
+    const STRIPE_STARTER_LINK = "#STRIPE_STARTER_LINK";
+    const STRIPE_PRO_LINK = "#STRIPE_PRO_LINK";
+    document.getElementById("cta-starter").href = STRIPE_STARTER_LINK;
+    document.getElementById("cta-pro").href = STRIPE_PRO_LINK;
+  </script>
+</body>
+</html>
